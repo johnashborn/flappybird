@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Flappy Bird Animation</title>
+    <title>I'm Sorry, Langga 🥺</title>
     <style>
         * {
             margin: 0;
@@ -12,394 +12,370 @@
         }
 
         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            background: #0d1117;
-            font-family: 'Arial', sans-serif;
             overflow: hidden;
         }
 
-        .animation-container {
-            position: relative;
-            width: 800px;
-            height: 400px;
-            background: linear-gradient(to bottom, #4EC0CA 0%, #87CEEB 70%, #DEB887 70%, #D2B48C 100%);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 50px rgba(57, 211, 83, 0.3);
-        }
-
-        #animationCanvas {
-            display: block;
-        }
-
-        .info {
+        /* Floating hearts background */
+        .heart {
             position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: white;
-            font-size: 14px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            font-size: 30px;
+            animation: float 6s infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
             text-align: center;
+            background: white;
+            padding: 50px 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
         }
 
-        .github-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(57, 211, 83, 0.9);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
-
-        .score-display {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        h1 {
+            font-size: 42px;
+            color: #764ba2;
+            margin-bottom: 15px;
+            animation: pulse 2s ease-in-out infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
         }
 
-        .animation-container {
-            animation: pulse 3s ease-in-out infinite;
+        .subtitle {
+            font-size: 24px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .gif-container {
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .cute-character {
+            font-size: 120px;
+            display: inline-block;
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .crying {
+            animation: shake 0.5s ease-in-out infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0) rotate(0deg);
+            }
+            25% {
+                transform: translateX(-5px) rotate(-5deg);
+            }
+            75% {
+                transform: translateX(5px) rotate(5deg);
+            }
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            position: relative;
+            height: 120px;
+            align-items: center;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        #yesBtn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 5px 15px rgba(118, 75, 162, 0.4);
+            }
+            50% {
+                box-shadow: 0 5px 30px rgba(118, 75, 162, 0.8);
+            }
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(118, 75, 162, 0.6);
+        }
+
+        #noBtn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        #noBtn:hover {
+            transform: scale(0.95);
+        }
+
+        .success-message {
+            display: none;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .success-message h2 {
+            font-size: 48px;
+            color: #764ba2;
+            margin: 20px 0;
+        }
+
+        .success-message p {
+            font-size: 24px;
+            color: #555;
+        }
+
+        .hearts-explosion {
+            position: fixed;
+            font-size: 40px;
+            pointer-events: none;
+            animation: explode 1s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(0, 0) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--x), var(--y)) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .click-counter {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #888;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
-    <div class="animation-container">
-        <canvas id="animationCanvas" width="800" height="400"></canvas>
+    <!-- Floating hearts background -->
+    <script>
+        // Create floating hearts
+        for (let i = 0; i < 15; i++) {
+            setTimeout(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.textContent = '💜';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 6 + 's';
+                heart.style.animationDuration = (6 + Math.random() * 4) + 's';
+                document.body.appendChild(heart);
+            }, i * 200);
+        }
+    </script>
+
+    <div class="container" id="mainContainer">
+        <h1>I'm so sorry, langga🥺</h1>
+        <p class="subtitle">talk to me na</p>
         
-        <div class="score-display" id="score">Distance: 0</div>
-        <div class="github-badge">🐦 Auto-Flying</div>
-        <div class="info">GitHub Profile Animation</div>
+        <div class="gif-container">
+            <div class="cute-character" id="character">🥺</div>
+        </div>
+        
+        <div class="buttons-container">
+            <button id="yesBtn" onclick="sayYes()">okay, langga💜</button>
+            <button id="noBtn" onclick="sayNo()">No😡</button>
+        </div>
+        
+        <div class="click-counter" id="clickCounter"></div>
+    </div>
+
+    <div class="container success-message" id="successMessage">
+        <div class="cute-character">😊💜✨</div>
+        <h2>Yay! 🎉</h2>
+        <p>I love you so much, langga! 💜</p>
+        <p style="font-size: 18px; margin-top: 20px; color: #888;">
+            Thank you for forgiving me 🥺💜
+        </p>
     </div>
 
     <script>
-        const canvas = document.getElementById('animationCanvas');
-        const ctx = canvas.getContext('2d');
+        let noClickCount = 0;
+        let yesSize = 1;
+        let noSize = 1;
         
-        // Bird object with AI behavior
-        let bird = {
-            x: 150,
-            y: canvas.height / 2,
-            width: 40,
-            height: 28,
-            velocity: 0,
-            gravity: 0.4,
-            jump: -7,
-            rotation: 0,
-            targetY: canvas.height / 2
-        };
-        
-        let pipes = [];
-        let distance = 0;
-        let pipeGap = 140;
-        let pipeWidth = 70;
-        let pipeSpeed = 3;
-        let frameCount = 0;
-        let cloudPositions = [];
-        
-        // GitHub colors
-        const birdColor = '#39d353';
-        const birdAccent = '#2ea44f';
-        const pipeColor = '#6e5494';
-        const pipeOutline = '#4a3768';
-        
-        // Initialize clouds
-        for (let i = 0; i < 5; i++) {
-            cloudPositions.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * (canvas.height * 0.5),
-                speed: 0.3 + Math.random() * 0.5,
-                size: 30 + Math.random() * 20
-            });
-        }
-        
-        function drawCloud(cloud) {
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
-            ctx.beginPath();
-            ctx.arc(cloud.x, cloud.y, cloud.size, 0, Math.PI * 2);
-            ctx.arc(cloud.x + cloud.size * 0.7, cloud.y, cloud.size * 0.8, 0, Math.PI * 2);
-            ctx.arc(cloud.x + cloud.size * 1.4, cloud.y, cloud.size * 0.9, 0, Math.PI * 2);
-            ctx.fill();
-        }
-        
-        function updateClouds() {
-            cloudPositions.forEach(cloud => {
-                cloud.x -= cloud.speed;
-                if (cloud.x < -cloud.size * 2) {
-                    cloud.x = canvas.width + cloud.size;
-                    cloud.y = Math.random() * (canvas.height * 0.5);
-                }
-            });
-        }
-        
-        function drawBird() {
-            ctx.save();
-            ctx.translate(bird.x + bird.width/2, bird.y + bird.height/2);
-            ctx.rotate(bird.rotation);
+        const character = document.getElementById('character');
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const clickCounter = document.getElementById('clickCounter');
+        const mainContainer = document.getElementById('mainContainer');
+        const successMessage = document.getElementById('successMessage');
+
+        function sayNo() {
+            noClickCount++;
             
-            // Shadow
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
-            ctx.beginPath();
-            ctx.ellipse(2, 2, bird.width/2, bird.height/2, 0, 0, Math.PI * 2);
-            ctx.fill();
+            // Change character to crying
+            character.textContent = '🙏😭';
+            character.classList.add('crying');
             
-            // Body
-            ctx.fillStyle = birdColor;
-            ctx.beginPath();
-            ctx.ellipse(0, 0, bird.width/2, bird.height/2, 0, 0, Math.PI * 2);
-            ctx.fill();
+            // Make yes button bigger
+            yesSize += 0.3;
+            yesBtn.style.transform = `scale(${yesSize})`;
             
-            // Wing (animated)
-            const wingOffset = Math.sin(frameCount * 0.2) * 3;
-            ctx.fillStyle = birdAccent;
-            ctx.beginPath();
-            ctx.ellipse(-8, 3 + wingOffset, 10, 8, 0, 0, Math.PI * 2);
-            ctx.fill();
+            // Make no button smaller
+            noSize -= 0.15;
+            noBtn.style.transform = `scale(${noSize})`;
             
-            // Eye white
-            ctx.fillStyle = 'white';
-            ctx.beginPath();
-            ctx.arc(10, -6, 6, 0, Math.PI * 2);
-            ctx.fill();
+            // Update counter with cute messages
+            const messages = [
+                "Please langga... 🥺",
+                "I really mean it... 💔",
+                "Don't be mad na... 😢",
+                "I miss you so much... 🥺",
+                "Pretty please? 🙏💜",
+                "Last chance for the No button... 😭",
+                "It's disappearing... 🫠"
+            ];
             
-            // Eye pupil
-            ctx.fillStyle = 'black';
-            ctx.beginPath();
-            ctx.arc(12, -6, 4, 0, Math.PI * 2);
-            ctx.fill();
-            
-            // Eye shine
-            ctx.fillStyle = 'white';
-            ctx.beginPath();
-            ctx.arc(13, -7, 2, 0, Math.PI * 2);
-            ctx.fill();
-            
-            // Beak
-            ctx.fillStyle = '#FFA500';
-            ctx.beginPath();
-            ctx.moveTo(15, -2);
-            ctx.lineTo(25, -3);
-            ctx.lineTo(25, 1);
-            ctx.lineTo(15, 2);
-            ctx.closePath();
-            ctx.fill();
-            
-            // Beak outline
-            ctx.strokeStyle = '#FF8C00';
-            ctx.lineWidth = 1;
-            ctx.stroke();
-            
-            ctx.restore();
-        }
-        
-        function drawPipe(pipe) {
-            // Add gradient to pipes
-            const gradient = ctx.createLinearGradient(pipe.x, 0, pipe.x + pipeWidth, 0);
-            gradient.addColorStop(0, pipeColor);
-            gradient.addColorStop(0.5, '#8b6bb7');
-            gradient.addColorStop(1, pipeColor);
-            
-            // Top pipe
-            ctx.fillStyle = gradient;
-            ctx.fillRect(pipe.x, 0, pipeWidth, pipe.top);
-            
-            ctx.strokeStyle = pipeOutline;
-            ctx.lineWidth = 3;
-            ctx.strokeRect(pipe.x, 0, pipeWidth, pipe.top);
-            
-            // Pipe cap (top)
-            ctx.fillRect(pipe.x - 6, pipe.top - 35, pipeWidth + 12, 35);
-            ctx.strokeRect(pipe.x - 6, pipe.top - 35, pipeWidth + 12, 35);
-            
-            // Bottom pipe
-            ctx.fillStyle = gradient;
-            ctx.fillRect(pipe.x, pipe.bottom, pipeWidth, canvas.height - pipe.bottom);
-            
-            ctx.strokeStyle = pipeOutline;
-            ctx.strokeRect(pipe.x, pipe.bottom, pipeWidth, canvas.height - pipe.bottom);
-            
-            // Pipe cap (bottom)
-            ctx.fillRect(pipe.x - 6, pipe.bottom, pipeWidth + 12, 35);
-            ctx.strokeRect(pipe.x - 6, pipe.bottom, pipeWidth + 12, 35);
-            
-            // Highlights
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
-            ctx.fillRect(pipe.x + 5, 0, 10, pipe.top);
-            ctx.fillRect(pipe.x + 5, pipe.bottom, 10, canvas.height - pipe.bottom);
-        }
-        
-        function drawBackground() {
-            // Sky gradient
-            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height * 0.7);
-            gradient.addColorStop(0, '#4EC0CA');
-            gradient.addColorStop(1, '#87CEEB');
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, canvas.width, canvas.height * 0.7);
-            
-            // Clouds
-            cloudPositions.forEach(cloud => drawCloud(cloud));
-            
-            // Ground
-            ctx.fillStyle = '#DEB887';
-            ctx.fillRect(0, canvas.height * 0.7, canvas.width, canvas.height * 0.3);
-            
-            // Ground texture
-            ctx.fillStyle = '#D2B48C';
-            const grassOffset = (frameCount * pipeSpeed) % 30;
-            for (let i = -grassOffset; i < canvas.width; i += 30) {
-                ctx.fillRect(i, canvas.height * 0.7 + 5, 15, 8);
-                ctx.fillRect(i + 10, canvas.height * 0.7 + 15, 12, 6);
-            }
-        }
-        
-        function createPipe() {
-            const minTop = 60;
-            const maxTop = canvas.height * 0.7 - pipeGap - 60;
-            const top = Math.random() * (maxTop - minTop) + minTop;
-            
-            pipes.push({
-                x: canvas.width,
-                top: top,
-                bottom: top + pipeGap,
-                passed: false
-            });
-        }
-        
-        // AI Logic - Bird automatically navigates through pipes
-        function updateBirdAI() {
-            // Find the next pipe
-            let nextPipe = null;
-            for (let pipe of pipes) {
-                if (pipe.x + pipeWidth > bird.x) {
-                    nextPipe = pipe;
-                    break;
-                }
+            if (noClickCount <= messages.length) {
+                clickCounter.textContent = messages[noClickCount - 1];
             }
             
-            if (nextPipe) {
-                // Calculate target Y (middle of the gap)
-                bird.targetY = nextPipe.top + pipeGap / 2;
+            // Hide no button completely after enough clicks
+            if (noSize <= 0.3) {
+                noBtn.style.display = 'none';
+                clickCounter.textContent = "Only one choice left langga... 💜";
                 
-                // Adjust for distance to pipe
-                const distanceToPipe = nextPipe.x - bird.x;
-                const verticalDistance = bird.y - bird.targetY;
-                
-                // Smart jumping logic
-                if (distanceToPipe < 200) {
-                    // Close to pipe - precise navigation
-                    if (verticalDistance > 10) {
-                        bird.velocity = bird.jump;
-                    }
-                } else {
-                    // Far from pipe - more lenient
-                    if (verticalDistance > 30) {
-                        bird.velocity = bird.jump;
-                    }
+                // Make yes button even MORE attractive
+                yesBtn.style.transform = `scale(${yesSize + 0.5})`;
+                yesBtn.style.animation = 'glow 0.5s ease-in-out infinite, pulse 1s ease-in-out infinite';
+            }
+            
+            // Reset character after a moment
+            setTimeout(() => {
+                if (character.textContent === '😢') {
+                    character.textContent = '🥺';
+                    character.classList.remove('crying');
                 }
-            } else {
-                // No pipe ahead, stay in middle
-                bird.targetY = canvas.height / 2;
-                if (bird.y - bird.targetY > 20) {
-                    bird.velocity = bird.jump;
-                }
-            }
-            
-            // Apply physics
-            bird.velocity += bird.gravity;
-            bird.y += bird.velocity;
-            
-            // Smooth rotation
-            bird.rotation = Math.min(Math.max(bird.velocity * 0.04, -0.4), 0.4);
-            
-            // Boundaries (with reset if crashed)
-            if (bird.y < 0) {
-                bird.y = 0;
-                bird.velocity = 0;
-            }
-            if (bird.y + bird.height >= canvas.height * 0.7) {
-                resetAnimation();
-            }
+            }, 1500);
         }
-        
-        function updatePipes() {
-            // Create new pipes
-            if (frameCount % 100 === 0) {
-                createPipe();
+
+        function sayYes() {
+            // Create hearts explosion
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.classList.add('hearts-explosion');
+                    heart.textContent = '💜';
+                    
+                    const rect = yesBtn.getBoundingClientRect();
+                    heart.style.left = rect.left + rect.width / 2 + 'px';
+                    heart.style.top = rect.top + rect.height / 2 + 'px';
+                    
+                    const angle = (Math.PI * 2 * i) / 30;
+                    const distance = 100 + Math.random() * 100;
+                    heart.style.setProperty('--x', Math.cos(angle) * distance + 'px');
+                    heart.style.setProperty('--y', Math.sin(angle) * distance + 'px');
+                    
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => heart.remove(), 1000);
+                }, i * 30);
             }
             
-            // Update pipe positions
-            for (let i = pipes.length - 1; i >= 0; i--) {
-                pipes[i].x -= pipeSpeed;
+            // Show success message
+            setTimeout(() => {
+                mainContainer.style.display = 'none';
+                successMessage.style.display = 'block';
                 
-                // Check collision
-                if (bird.x + bird.width > pipes[i].x && 
-                    bird.x < pipes[i].x + pipeWidth) {
-                    if (bird.y < pipes[i].top || 
-                        bird.y + bird.height > pipes[i].bottom) {
-                        resetAnimation();
-                        return;
-                    }
+                // Add more floating hearts
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => {
+                        const heart = document.createElement('div');
+                        heart.classList.add('heart');
+                        heart.textContent = ['💜', '💕', '💖', '❤️'][Math.floor(Math.random() * 4)];
+                        heart.style.left = Math.random() * 100 + '%';
+                        heart.style.fontSize = (20 + Math.random() * 30) + 'px';
+                        document.body.appendChild(heart);
+                    }, i * 100);
                 }
+            }, 800);
+        }
+
+        // Make the No button try to escape (optional fun feature)
+        let escapeAttempts = 0;
+        noBtn.addEventListener('mouseenter', function() {
+            if (noSize < 0.5 && escapeAttempts < 3) {
+                escapeAttempts++;
+                const randomX = (Math.random() - 0.5) * 100;
+                const randomY = (Math.random() - 0.5) * 100;
+                this.style.transform = `translate(${randomX}px, ${randomY}px) scale(${noSize})`;
                 
-                // Count distance
-                if (!pipes[i].passed && bird.x > pipes[i].x + pipeWidth) {
-                    pipes[i].passed = true;
-                    distance++;
-                    document.getElementById('score').textContent = `Distance: ${distance}`;
-                }
-                
-                // Remove off-screen pipes
-                if (pipes[i].x + pipeWidth < 0) {
-                    pipes.splice(i, 1);
-                }
+                setTimeout(() => {
+                    this.style.transform = `scale(${noSize})`;
+                }, 500);
             }
-        }
-        
-        function resetAnimation() {
-            bird.y = canvas.height / 2;
-            bird.velocity = 0;
-            bird.rotation = 0;
-            pipes = [];
-            distance = 0;
-            frameCount = 0;
-            document.getElementById('score').textContent = 'Distance: 0';
-        }
-        
-        function animate() {
-            frameCount++;
-            
-            drawBackground();
-            updateClouds();
-            
-            // Draw pipes
-            pipes.forEach(pipe => drawPipe(pipe));
-            
-            // Update and draw bird
-            updateBirdAI();
-            drawBird();
-            updatePipes();
-            
-            requestAnimationFrame(animate);
-        }
-        
-        // Start animation
-        animate();
+        });
     </script>
 </body>
 </html>
